@@ -3,6 +3,7 @@ import { DataProvider } from '@/components/site/data-provider';
 import { ThemeProvider } from '@/components/site/theme-provider';
 import { VisitTracker } from '@/components/site/visit-tracker';
 import './globals.css';
+import './admin.css';
 
 export const metadata: Metadata = {
   title: {
