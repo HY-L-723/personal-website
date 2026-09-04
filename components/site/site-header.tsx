@@ -15,7 +15,6 @@ import {
   Menu,
   MessageCircle,
   Moon,
-  Search,
   Shrink,
   Sun,
   UserRound,
@@ -26,6 +25,7 @@ import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { useTheme } from '@/components/site/theme-provider';
+import { SearchDialog } from '@/components/site/search-dialog';
 
 const navItems = [
   { href: '/', label: '主页', icon: Home },
@@ -101,15 +101,7 @@ export function SiteHeader({ transparent = false }: { transparent?: boolean }) {
         </nav>
 
         <div className="header-actions">
-          <Button
-            variant="ghost"
-            size="icon"
-            className="header-icon-button"
-            aria-label="搜索全站内容"
-            title="搜索"
-          >
-            <Search />
-          </Button>
+          <SearchDialog />
           <Button
             variant="ghost"
             size="icon"
