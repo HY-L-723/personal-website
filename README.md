@@ -1,0 +1,69 @@
+# PVL随记
+
+PVL 的综合个人主页，默认使用中文，记录学习、生活、照片和随笔。
+
+> 过去无可挽回，未来可以改变。
+
+在线地址：[https://pvl-notes.clever-flint-5038.chatgpt.site](https://pvl-notes.clever-flint-5038.chatgpt.site)
+
+## 已实现功能
+
+- 沉浸式首页：深绿雨夜、背景视觉、雨滴和粒子动效、明暗主题、减少动态效果适配
+- 博客系统：Markdown 与 GFM 渲染、全文搜索、置顶文章、分类、标签和归档
+- 随笔与相册：点赞持久化、相册筛选、照片大图预览
+- 社区页面：友链申请与审核、留言发布、弹幕墙、楼中回复
+- 内容页面：更新日志、关于页、真实本机访问统计与趋势图
+- 独立后台：站点资料、文章、随笔、相册、友链、留言和更新日志管理
+- 数据中心：完整 JSON 导入、导出和初始数据恢复
+- 响应式布局：桌面、平板和手机均可使用
+
+## 本地运行
+
+环境要求：Node.js 22.13 或更高版本。
+
+```bash
+npm install
+npm run dev
+```
+
+生产构建：
+
+```bash
+npm run build
+```
+
+前台地址为 `http://localhost:3000`，独立后台为 `http://localhost:3000/admin`。
+
+## 当前数据模式
+
+本阶段按需求暂不接数据库。所有内容通过统一 Repository 数据层读写浏览器 `localStorage`，是真实可操作、可持久化的本机数据，但存在以下边界：
+
+- 数据不会自动跨浏览器或跨设备同步。
+- 清理浏览器站点数据会删除本地修改，建议定期从后台导出 JSON。
+- 访问统计按浏览器会话去重，只代表当前浏览器，不代表全站总量。
+- 登录注册暂缓，因此 `/admin` 当前没有身份鉴权，不应作为公开管理入口使用。
+
+后续接入数据库时，可以保留现有页面与数据类型，新增远程 Repository 实现并进行一次 JSON 数据迁移。建议同时加入账号认证、服务端内容审核、全站统计与图片对象存储。
+
+## 更换个人素材
+
+打开 `/admin`，进入“站点设置”，即可替换昵称、简介、头像、首页背景和内容页背景。初始图片是可替换的占位素材，详细来源见 [CREDITS.md](./CREDITS.md)。
+
+## 主要技术
+
+- Vinext / React 19 / TypeScript
+- Tailwind CSS 4 与 shadcn 组件
+- React Markdown + remark-gfm
+- Recharts
+- OpenAI Sites 托管配置
+
+## 项目结构
+
+```text
+app/                 页面路由与全局样式
+components/site/     前台组件
+components/admin/    独立后台组件
+components/ui/       通用 UI 组件
+lib/data/            数据接口、本地仓库与示例内容
+public/               站点图片、图标与分享卡
+```

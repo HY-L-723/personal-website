@@ -1,7 +1,7 @@
 'use client';
 
 import { Image as ImageIcon, RotateCcw, Save } from 'lucide-react';
-import { type FormEvent, useEffect, useState } from 'react';
+import { type SubmitEvent, useEffect, useState } from 'react';
 import { useSiteData } from '@/components/site/data-provider';
 import type { SiteSettings } from '@/lib/types';
 
@@ -32,7 +32,7 @@ export function AdminSettings() {
     setSaved(false);
   }
 
-  function save(event: FormEvent<HTMLFormElement>) {
+  function save(event: SubmitEvent<HTMLFormElement>) {
     event.preventDefault();
     updateData((current) => ({ ...current, settings: draft }));
     setDirty(false);

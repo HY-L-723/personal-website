@@ -1,7 +1,7 @@
 'use client';
 
 import { Edit3, Eye, EyeOff, FilePlus2, Pin, Save, Trash2, X } from 'lucide-react';
-import { type FormEvent, useMemo, useState } from 'react';
+import { type SubmitEvent, useMemo, useState } from 'react';
 import { useSiteData } from '@/components/site/data-provider';
 import type { Post } from '@/lib/types';
 import { confirmDelete, localToday, makeId } from '@/components/admin/admin-utils';
@@ -49,7 +49,7 @@ export function AdminPosts() {
     setShowEditor(false);
   }
 
-  function save(event: FormEvent<HTMLFormElement>) {
+  function save(event: SubmitEvent<HTMLFormElement>) {
     event.preventDefault();
     const normalizedSlug = (draft.slug.trim() || `post-${Date.now()}`)
       .toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\u4e00-\u9fa5-]/g, '');

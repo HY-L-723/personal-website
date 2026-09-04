@@ -1,7 +1,7 @@
 'use client';
 
 import { Edit3, ImagePlus, Images, Plus, Save, Trash2 } from 'lucide-react';
-import { type FormEvent, useEffect, useState } from 'react';
+import { type SubmitEvent, useEffect, useState } from 'react';
 import { useSiteData } from '@/components/site/data-provider';
 import type { Album, Photo } from '@/lib/types';
 import { confirmDelete, localToday, makeId } from '@/components/admin/admin-utils';
@@ -18,7 +18,7 @@ export function AdminGallery() {
     if (!photoDraft.albumId && data.albums[0]) setPhotoDraft((current) => ({ ...current, albumId: data.albums[0].id }));
   }, [data.albums, photoDraft.albumId]);
 
-  function saveAlbum(event: FormEvent<HTMLFormElement>) {
+  function saveAlbum(event: SubmitEvent<HTMLFormElement>) {
     event.preventDefault();
     const album: Album = {
       id: albumDraft.id || makeId('album'),
@@ -37,7 +37,7 @@ export function AdminGallery() {
     if (!photoDraft.albumId) setPhotoDraft({ ...emptyPhoto, albumId: album.id });
   }
 
-  function savePhoto(event: FormEvent<HTMLFormElement>) {
+  function savePhoto(event: SubmitEvent<HTMLFormElement>) {
     event.preventDefault();
     const photo: Photo = {
       id: photoDraft.id || makeId('photo'),

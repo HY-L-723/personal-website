@@ -1,7 +1,7 @@
 'use client';
 
 import { CheckCircle2, ExternalLink, Link2, Send, Sparkles } from 'lucide-react';
-import { type FormEvent, useState } from 'react';
+import { type SubmitEvent, useState } from 'react';
 import { ContentShell } from '@/components/site/content-shell';
 import { PageBanner } from '@/components/site/page-banner';
 import { useSiteData } from '@/components/site/data-provider';
@@ -14,7 +14,7 @@ export function FriendsPage() {
   const [submitted, setSubmitted] = useState(false);
   const approvedLinks = data.friendLinks.filter((friend) => friend.approved);
 
-  function submitApplication(event: FormEvent<HTMLFormElement>) {
+  function submitApplication(event: SubmitEvent<HTMLFormElement>) {
     event.preventDefault();
     const id = typeof crypto !== 'undefined' && crypto.randomUUID
       ? crypto.randomUUID()
@@ -88,13 +88,13 @@ export function FriendsPage() {
 
       <section className="friend-apply glass-card" id="apply">
         <div className="friend-apply-copy">
-          <span><Sparkles />LET'S CONNECT</span>
+          <span><Sparkles />LET&apos;S CONNECT</span>
           <h2>申请友链</h2>
           <p>填写后会真实保存到当前浏览器，并出现在后台的待审核列表。接入数据库后即可跨设备同步。</p>
           {submitted && (
-            <div className="friend-success" role="status">
+            <output className="friend-success">
               <CheckCircle2 />申请已保存，等待站长审核。
-            </div>
+            </output>
           )}
         </div>
         <form onSubmit={submitApplication}>

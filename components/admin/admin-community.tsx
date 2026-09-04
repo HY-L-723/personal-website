@@ -1,7 +1,7 @@
 'use client';
 
-import { CheckCircle2, Edit3, ExternalLink, History, Link2, MessageSquare, Pin, Save, Trash2, XCircle } from 'lucide-react';
-import { type FormEvent, useState } from 'react';
+import { CheckCircle2, Edit3, ExternalLink, History, MessageSquare, Pin, Save, Trash2, XCircle } from 'lucide-react';
+import { type SubmitEvent, useState } from 'react';
 import { useSiteData } from '@/components/site/data-provider';
 import type { ChangelogEntry, FriendLink, GuestbookEntry } from '@/lib/types';
 import { confirmDelete, localToday, makeId } from '@/components/admin/admin-utils';
@@ -32,7 +32,7 @@ export function AdminCommunity() {
     updateData((current) => ({ ...current, guestbook: current.guestbook.filter((item) => item.id !== entry.id) }));
   }
 
-  function saveLog(event: FormEvent<HTMLFormElement>) {
+  function saveLog(event: SubmitEvent<HTMLFormElement>) {
     event.preventDefault();
     const next: ChangelogEntry = {
       id: logDraft.id || makeId('log'),

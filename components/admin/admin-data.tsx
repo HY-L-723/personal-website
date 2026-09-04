@@ -41,7 +41,7 @@ export function AdminData() {
         <div><i><Database /></i><span><small>内容条目</small><strong>{itemCount}</strong><em>约 {size} KB</em></span></div>
       </section>
 
-      {notice && <div className="admin-data-notice" role="status"><ShieldCheck />{notice}</div>}
+      {notice && <output className="admin-data-notice"><ShieldCheck />{notice}</output>}
 
       <section className="admin-data-actions">
         <article className="admin-panel">

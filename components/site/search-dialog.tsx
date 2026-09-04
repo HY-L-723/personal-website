@@ -65,7 +65,6 @@ export function SearchDialog() {
               value={query}
               onChange={(event) => setQuery(event.target.value)}
               placeholder="例如：学习、生活、前端"
-              autoFocus
             />
           </div>
           <div className="search-results" aria-live="polite">

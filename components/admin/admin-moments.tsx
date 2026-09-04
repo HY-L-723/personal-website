@@ -1,7 +1,7 @@
 'use client';
 
 import { Edit3, Feather, Heart, Image as ImageIcon, Plus, Save, Trash2, X } from 'lucide-react';
-import { type FormEvent, useState } from 'react';
+import { type SubmitEvent, useState } from 'react';
 import { useSiteData } from '@/components/site/data-provider';
 import type { Moment } from '@/lib/types';
 import { confirmDelete, makeId } from '@/components/admin/admin-utils';
@@ -18,7 +18,7 @@ export function AdminMoments() {
   const [editing, setEditing] = useState(false);
   const [notice, setNotice] = useState('');
 
-  function save(event: FormEvent<HTMLFormElement>) {
+  function save(event: SubmitEvent<HTMLFormElement>) {
     event.preventDefault();
     const next: Moment = {
       id: draft.id || makeId('moment'),

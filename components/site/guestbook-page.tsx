@@ -1,7 +1,7 @@
 'use client';
 
 import { MapPin, MessageCircle, Pin, Reply, Send, ShieldCheck } from 'lucide-react';
-import { type FormEvent, useMemo, useState } from 'react';
+import { type SubmitEvent, useMemo, useState } from 'react';
 import { ContentShell } from '@/components/site/content-shell';
 import { PageBanner } from '@/components/site/page-banner';
 import { useSiteData } from '@/components/site/data-provider';
@@ -41,7 +41,7 @@ export function GuestbookPage() {
     [data.guestbook],
   );
 
-  function publish(event: FormEvent<HTMLFormElement>) {
+  function publish(event: SubmitEvent<HTMLFormElement>) {
     event.preventDefault();
     const next: GuestbookEntry = {
       id: uid('message'),
@@ -59,7 +59,7 @@ export function GuestbookPage() {
     setNotice('留言已保存到当前浏览器，并加入弹幕墙。');
   }
 
-  function publishReply(event: FormEvent<HTMLFormElement>, entryId: string) {
+  function publishReply(event: SubmitEvent<HTMLFormElement>, entryId: string) {
     event.preventDefault();
     updateData((current) => ({
       ...current,
