@@ -153,14 +153,7 @@ export const seedData: SiteData = {
       replies: [],
     },
   ],
-  visits: [
-    { date: '2026-08-30', visitors: 5, views: 8 },
-    { date: '2026-08-31', visitors: 8, views: 14 },
-    { date: '2026-09-01', visitors: 11, views: 20 },
-    { date: '2026-09-02', visitors: 9, views: 16 },
-    { date: '2026-09-03', visitors: 14, views: 25 },
-    { date: '2026-09-04', visitors: 6, views: 10 },
-  ],
+  visits: [],
 };
 
 export function createSeedData(): SiteData {
