@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { DataProvider } from '@/components/site/data-provider';
+import { ThemeProvider } from '@/components/site/theme-provider';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -18,7 +19,9 @@ export default function RootLayout({
   return (
     <html lang="zh-CN" suppressHydrationWarning>
       <body>
-        <DataProvider>{children}</DataProvider>
+        <ThemeProvider>
+          <DataProvider>{children}</DataProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
