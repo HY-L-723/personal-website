@@ -11,6 +11,8 @@ import {
   Sparkles,
 } from 'lucide-react';
 import { useMemo, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
+import { useEffect } from 'react';
 import { ContentShell } from '@/components/site/content-shell';
 import { PageBanner } from '@/components/site/page-banner';
 import { Input } from '@/components/ui/input';
@@ -19,6 +21,7 @@ import { cn } from '@/lib/utils';
 
 export function BlogPage() {
   const { data } = useSiteData();
+  const searchParams = useSearchParams();
   const [query, setQuery] = useState('');
   const [category, setCategory] = useState('全部');
   const publishedPosts = data.posts.filter((post) => post.published);
@@ -27,6 +30,11 @@ export function BlogPage() {
     ...Array.from(new Set(publishedPosts.map((post) => post.category))),
   ];
   const tags = Array.from(new Set(publishedPosts.flatMap((post) => post.tags)));
+
+  useEffect(() => {
+    const tag = searchParams.get('tag');
+    if (tag) setQuery(tag);
+  }, [searchParams]);
 
   const filteredPosts = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
