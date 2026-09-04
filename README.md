@@ -4,7 +4,7 @@ PVL 的综合个人主页，默认使用中文，记录学习、生活、照片�
 
 > 过去无可挽回，未来可以改变。
 
-在线地址：[https://pvl-notes.clever-flint-5038.chatgpt.site](https://pvl-notes.clever-flint-5038.chatgpt.site)
+在线地址：[https://pvl-notes.hl7894687.chatgpt.site](https://pvl-notes.hl7894687.chatgpt.site)
 
 ## 已实现功能
 

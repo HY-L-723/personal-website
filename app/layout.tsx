@@ -6,7 +6,7 @@ import './globals.css';
 import './admin.css';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://pvl-notes.clever-flint-5038.chatgpt.site'),
+  metadataBase: new URL('https://pvl-notes.hl7894687.chatgpt.site'),
   title: {
     default: 'PVL随记',
     template: '%s · PVL随记',
