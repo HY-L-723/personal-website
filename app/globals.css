@@ -2012,3 +2012,214 @@
     height: 90px;
   }
 }
+
+/* Moments */
+.moments-heading {
+  display: flex;
+  width: min(920px, 100%);
+  margin: 42px auto 18px;
+  padding: 0 10px;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.moments-heading span {
+  color: var(--primary);
+  font-size: 12px;
+  font-weight: 850;
+  letter-spacing: 0.12em;
+}
+
+.moments-heading h2 {
+  margin: 5px 0 0;
+  font-size: 23px;
+}
+
+.moments-heading > p {
+  margin: 0;
+  color: var(--muted-foreground);
+  font-size: 13px;
+}
+
+.moments-timeline {
+  width: min(920px, 100%);
+  margin: 0 auto;
+}
+
+.moment-item {
+  display: grid;
+  grid-template-columns: 70px minmax(0, 1fr);
+}
+
+.moment-line {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.moment-line::after {
+  position: absolute;
+  top: 38px;
+  bottom: -22px;
+  left: 50%;
+  width: 1px;
+  background: linear-gradient(var(--primary), transparent);
+  content: '';
+}
+
+.moment-item:last-child .moment-line::after {
+  display: none;
+}
+
+.moment-line span {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: 36px;
+  height: 36px;
+  color: var(--primary-foreground);
+  border: 5px solid color-mix(in oklch, var(--background), transparent 12%);
+  border-radius: 50%;
+  background: var(--primary);
+  box-shadow: 0 8px 24px rgb(13 148 136 / 24%);
+  place-items: center;
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.moment-card {
+  margin-bottom: 22px;
+  padding: clamp(20px, 3vw, 30px);
+  border-radius: 24px;
+}
+
+.moment-card > header {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.moment-card > header img {
+  width: 44px;
+  height: 44px;
+  object-fit: cover;
+  border: 2px solid color-mix(in oklch, var(--primary), white 45%);
+  border-radius: 50%;
+}
+
+.moment-card > header div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.moment-card > header strong {
+  font-size: 14px;
+}
+
+.moment-card > header time {
+  color: var(--muted-foreground);
+  font-size: 11px;
+}
+
+.moment-card > p {
+  margin: 20px 0;
+  font-family: Georgia, 'Songti SC', serif;
+  font-size: 16px;
+  line-height: 1.9;
+}
+
+.moment-images {
+  display: grid;
+  margin: 18px 0;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.moment-images img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+.moment-images-single {
+  grid-template-columns: minmax(0, 560px);
+}
+
+.moment-images-single img {
+  aspect-ratio: 16 / 8.5;
+}
+
+.moment-card > footer {
+  display: flex;
+  padding-top: 16px;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--muted-foreground);
+  border-top: 1px dashed var(--border);
+  font-size: 11px;
+}
+
+.moment-card footer > span,
+.moment-card footer div,
+.moment-card footer button,
+.moment-card footer div > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.moment-card footer div {
+  gap: 12px;
+}
+
+.moment-card footer button {
+  padding: 5px 8px;
+  color: inherit;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.moment-card footer button:hover {
+  background: var(--muted);
+}
+
+.moment-card footer button.is-liked {
+  color: #f43f5e;
+}
+
+.moment-card footer button.is-liked svg {
+  fill: currentColor;
+}
+
+.moment-card footer svg {
+  width: 14px;
+}
+
+@media (max-width: 560px) {
+  .moment-item {
+    grid-template-columns: 42px minmax(0, 1fr);
+  }
+
+  .moment-line {
+    justify-content: flex-start;
+  }
+
+  .moment-line::after {
+    left: 14px;
+  }
+
+  .moment-line span {
+    width: 30px;
+    height: 30px;
+    border-width: 4px;
+  }
+
+  .moment-card > p {
+    font-size: 15px;
+  }
+}
