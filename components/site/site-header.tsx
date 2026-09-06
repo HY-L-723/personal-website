@@ -12,12 +12,14 @@ import {
   FileClock,
   Heart,
   Home,
+  LogIn,
   Menu,
   MessageCircle,
   Moon,
   Shrink,
   Sun,
   UserRound,
+  UserPlus,
   UsersRound,
   X,
 } from 'lucide-react';
@@ -124,9 +126,21 @@ export function SiteHeader({ transparent = false }: { transparent?: boolean }) {
           >
             {isFullscreen ? <Shrink /> : <Expand />}
           </Button>
-          <Link href="/admin" className="admin-link desktop-only">
+          <Link
+            href="/admin"
+            className="header-icon-link desktop-only"
+            aria-label="打开管理后台"
+            title="管理后台"
+          >
             <UserRound aria-hidden="true" />
-            管理
+          </Link>
+          <Link href="/login" className="auth-nav-login desktop-only">
+            <LogIn aria-hidden="true" />
+            登录
+          </Link>
+          <Link href="/register" className="auth-nav-register desktop-only">
+            <UserPlus aria-hidden="true" />
+            注册
           </Link>
           <Button
             variant="ghost"
@@ -165,6 +179,22 @@ export function SiteHeader({ transparent = false }: { transparent?: boolean }) {
           >
             <UserRound aria-hidden="true" />
             管理后台
+          </Link>
+          <Link
+            href="/login"
+            className="mobile-nav-link"
+            onClick={() => setMenuOpen(false)}
+          >
+            <LogIn aria-hidden="true" />
+            登录
+          </Link>
+          <Link
+            href="/register"
+            className="mobile-nav-link"
+            onClick={() => setMenuOpen(false)}
+          >
+            <UserPlus aria-hidden="true" />
+            注册
           </Link>
         </nav>
       )}
