@@ -10,6 +10,7 @@
     "build": "vinext build",
     "start": "wrangler dev --config dist/server/wrangler.json",
     "lint": "oxlint",
+    "test:auth": "node --test tests/auth-policy.test.mjs",
     "format": "oxfmt"
   },
   "dependencies": {
