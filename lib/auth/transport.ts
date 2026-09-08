@@ -28,13 +28,31 @@ export async function callAuthBackend(
     if (base.protocol !== 'https:' && !(base.protocol === 'http:' && ['127.0.0.1', 'localhost', '[::1]'].includes(base.hostname))) return unavailableResponse();
     const headers = new Headers(init.headers);
     headers.set('x-pvl-backend-key', bindings.AUTH_PROXY_SECRET);
-    return await fetch(new URL(path, base), {
+    const target = new URL(path, base);
+    const signal = AbortSignal.timeout(12000);
+    const options: RequestInit = {
       ...init,
       headers,
-      redirect: 'error',
+      redirect: 'manual',
       cache: 'no-store',
-      signal: AbortSignal.timeout(12000),
-    });
+      signal,
+    };
+    let response: Response;
+    try {
+      response = await fetch(target, options);
+    } catch (error) {
+      // A service restart can invalidate a pooled connection. Retry a read
+      // once within the original deadline, never replay an account mutation.
+      if ((init.method || 'GET').toUpperCase() !== 'GET' || signal.aborted) throw error;
+      response = await fetch(target, options);
+    }
+    // Workers only supports follow/manual. Explicitly reject redirects so the
+    // backend key and visitor cookie can never be forwarded to another target.
+    if (response.status >= 300 && response.status < 400) {
+      await response.body?.cancel();
+      return unavailableResponse();
+    }
+    return response;
   } catch {
     return unavailableResponse();
   }
