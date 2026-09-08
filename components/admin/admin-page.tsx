@@ -21,6 +21,7 @@ import { AdminMoments } from '@/components/admin/admin-moments';
 import { AdminGallery } from '@/components/admin/admin-gallery';
 import { AdminCommunity } from '@/components/admin/admin-community';
 import { AdminData } from '@/components/admin/admin-data';
+import { useAuth } from '@/components/site/auth-provider';
 
 type TabId = 'overview' | 'settings' | 'posts' | 'moments' | 'gallery' | 'community' | 'data';
 
@@ -36,9 +37,24 @@ const tabs: { id: TabId; label: string; icon: ComponentType }[] = [
 
 export function AdminPage() {
   const { data, ready } = useSiteData();
+  const { session, status, signOut } = useAuth();
   const [active, setActive] = useState<TabId>('overview');
+  const [logoutError, setLogoutError] = useState('');
+  const [loggingOut, setLoggingOut] = useState(false);
   const pendingFriends = data.friendLinks.filter((item) => !item.approved).length;
   const activeLabel = tabs.find((tab) => tab.id === active)?.label ?? '总览';
+
+  async function logout() {
+    setLoggingOut(true);
+    setLogoutError('');
+    if (await signOut()) window.location.assign('/login');
+    else { setLogoutError('退出失败，请重试。'); setLoggingOut(false); }
+  }
+
+  if (status === 'loading') return <main className="auth-access-message"><h1>正在确认登录状态</h1></main>;
+  if (status !== 'ready' || session?.user?.role !== 'admin') {
+    return <main className="auth-access-message"><h1>请重新验证登录身份</h1><p>当前登录已失效，或无法确认管理员权限。</p><Link href="/login?next=%2Fadmin">前往登录</Link></main>;
+  }
 
   return (
     <div className="admin-root">
@@ -55,8 +71,10 @@ export function AdminPage() {
             </button>
           ))}
         </nav>
-        <div className="admin-sidebar-note"><ShieldAlert /><p><strong>本地模式</strong>登录注册暂缓，后台当前没有鉴权，请勿直接公开部署后台入口。</p></div>
+        <div className="admin-sidebar-note"><ShieldAlert /><p><strong>站长工作台</strong>当前页面已验证管理员身份。内容仍保存在本机浏览器，可在数据中心导出备份。</p></div>
         <Link href="/" className="admin-back"><Home />返回前台</Link>
+        <button type="button" className="admin-back" onClick={logout} disabled={loggingOut}>{loggingOut ? '正在退出' : '退出登录'}</button>
+        {logoutError && <p role="alert">{logoutError}</p>}
       </aside>
 
       <main className="admin-main">

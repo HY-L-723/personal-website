@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { DataProvider } from '@/components/site/data-provider';
 import { ThemeProvider } from '@/components/site/theme-provider';
 import { VisitTracker } from '@/components/site/visit-tracker';
+import { AuthProvider } from '@/components/site/auth-provider';
 import './globals.css';
 import './admin.css';
 
@@ -42,10 +43,12 @@ export default function RootLayout({
     <html lang="zh-CN" suppressHydrationWarning>
       <body>
         <ThemeProvider>
-          <DataProvider>
-            <VisitTracker />
-            {children}
-          </DataProvider>
+          <AuthProvider>
+            <DataProvider>
+              <VisitTracker />
+              {children}
+            </DataProvider>
+          </AuthProvider>
         </ThemeProvider>
       </body>
     </html>

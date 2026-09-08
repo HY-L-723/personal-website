@@ -3,7 +3,8 @@ import { AuthPage } from '@/components/site/auth-page';
 
 export const metadata: Metadata = {
   title: '注册',
-  description: 'PVL随记注册界面演示，不会创建真实账号。',
+  description: '注册 PVL随记账号。',
+  robots: { index: false, follow: false },
 };
 
 export default function Page() {

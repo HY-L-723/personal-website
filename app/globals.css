@@ -1031,6 +1031,19 @@
 }
 
 /* Visual authentication */
+.auth-form-error { margin-bottom: 1rem; padding: 0.85rem 1rem; border: 1px solid rgb(239 68 68 / 30%); border-radius: 0.85rem; color: #b91c1c; background: rgb(254 226 226 / 65%); font-size: 0.9rem; line-height: 1.6; }
+.dark .auth-form-error { color: #fecaca; background: rgb(127 29 29 / 24%); }
+.account-name { max-width: 6rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 0 0.45rem; font-size: 0.85rem; }
+.account-error { position: absolute; top: 100%; right: 1rem; padding: 0.55rem 0.9rem; border-radius: 0.65rem; color: #b91c1c; background: #fee2e2; font-size: 0.85rem; }
+.account-loading { padding: 0.5rem; }
+.auth-access-message { max-width: 44rem; margin: 4rem auto; padding: 2.5rem; border-radius: 1.5rem; }
+.auth-access-message h1 { margin-bottom: 1rem; font-size: 1.8rem; font-weight: 800; }
+.auth-access-message p { color: var(--muted-foreground); line-height: 1.8; }
+.auth-access-message a { display: inline-flex; margin-top: 1.25rem; color: var(--accent-strong); }
+.auth-form .auth-check [data-slot='checkbox'] { margin-top: 0.1rem; }
+.auth-form > label, .auth-check, .auth-form-meta { font-size: 0.875rem !important; }
+.auth-stage .auth-panel-header p, .auth-stage .auth-confirmation p { font-size: 1rem; }
+.auth-form .auth-input-wrap input { font-size: 1rem; }
 .auth-stage {
   display: grid;
   width: min(1120px, 100%);
